@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView
-from core.erp.models import Category, Product
+from django.views.generic import ListView, CreateView
+from core.erp.forms import CategoryForm
+from core.erp.models import Category
 
 
 def category_list(request):
@@ -9,6 +10,7 @@ def category_list(request):
         'categories': Category.objects.all()
     }
     return render(request, "category/list.html", data)
+
 
 class CategoryListView(ListView):
     model = Category
@@ -22,3 +24,9 @@ class CategoryListView(ListView):
         context['title'] = 'Listado de Categorias'
         #context['object_list'] = Product.objects.all()
         return context
+
+
+class CategoryCreateView(CreateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = 'category/create.html'
