@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from core.erp.forms import CategoryForm
 from core.erp.models import Category
@@ -22,7 +23,6 @@ class CategoryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Listado de Categorias'
-        #context['object_list'] = Product.objects.all()
         return context
 
 
@@ -30,3 +30,9 @@ class CategoryCreateView(CreateView):
     model = Category
     form_class = CategoryForm
     template_name = 'category/create.html'
+    success_url = reverse_lazy("category_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Creación de Categorias'
+        return context
