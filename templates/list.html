@@ -33,7 +33,7 @@
             </table>
         </div>
         <div class="card-footer">
-            <button class="btn btn-primary btn-flat">
+            <button class="btn btn-primary btn-flat btn-onclick">
                 <i class="fas fa-plus"></i>Nuevo Registro
             </button>
         </div>
@@ -47,6 +47,10 @@
                 responsive: true,
                 autoWidth: false
             });
+            $('.btn-onclick').on('click', function () {
+                    alert('ÈXITO');
+            });
         });
+
     </script>
 {% endblock %}
